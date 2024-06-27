@@ -17,3 +17,11 @@ def consolas (request):
 def jugetes (request):
     context ={}
     return render (request, 'megagames/jugetes.html',context)
+
+def contacto (request):
+    context ={}
+    return render (request, 'megagames/contacto.html',context)
+
+def perfil (request):
+    context ={}
+    return render (request, 'megagames/perfil.html',context)

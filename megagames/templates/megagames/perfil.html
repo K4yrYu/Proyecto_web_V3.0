@@ -51,7 +51,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'contacto' %}">CONTACTANOS</a>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" aria-disabled="true"></a>
                 </li>
@@ -64,7 +63,7 @@
                   <a class="nav-link disabled" aria-disabled="true"></a>
                 </li>
                 <li class="nav-item">
-                  <a href="perfil.html" class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa-solid fa-user"></i>&nbsp;Perfil</a>
+                  <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa-solid fa-user"></i>&nbsp;Perfil</button>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" aria-disabled="true"></a>
@@ -75,49 +74,36 @@
         </nav>
       </div>
     </header>
+    
+
+    <!--Estructura temporal Perfil del usuario-->
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5 justify-content-center container-fluid">
+      <div class=" text-center justify-content-center container-fluid"> 
+        <img src="{% static 'img/zero-user.png' %}" alt="" class="img-fluid" style="height: 21rem; width: 21rem;">
+          <p class="mb-0 mt-2 mt-lg-0 color-letra-blanco texto-grande"  id= "user-email-display"></p>
+          <!--espacio-->
+          <div class="container">
+            &nbsp;
+          </div>
+          <!--espacio-->
+          <div class="container">
+            <button id="close-session-btn" class="btn btn-secondary my-2 my-sm-0 mx-auto" style="font-size: 1.25rem;" type="button">Cerrar Sesión</button>
+          </div>
+      </div>
+      <!--espacio-->
+      <div class="container">
+        &nbsp;
+      </div>
+    </div>
 
     <!--espacio-->
     <div class="container">
       &nbsp;
     </div>
 
-    <main class="container-fluid">
-      <!--juego de inicio-->
-      <div class="container-fluid d-flex justify-content-center align-items-center">
-        <div class="row">
-          <img
-            src="{% static 'img/oferta-1.jpeg' %}"
-            class="img-entrada col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5"
-            alt="IMAGEN VIDEOJUEGO ENTRADA"
-            style="max-height: 35rem; width: auto;" >
-        </div>
-      </div>
-
-      <!--espacio-->
-      <div class="container">
-        &nbsp;
-      </div>
     
-      <!--catálogo de videojuegos-->
-      <div class="container">
-          <div class="row">
-              <!-- Input de búsqueda por nombre -->
-              <input type="text" class="form-control justify-content-center" id="nombre" placeholder="Buscar Juego...">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5">
-              </div>
-          </div>
-          <!-- Contenedor para las tarjetas de los juegos -->
-          <div id="contenedorJuego" class="row"></div>
-      </div>
 
-      
-      <!--espacio-->
-      <div class="container">
-        &nbsp;
-      </div>
-    </main>
-
-   <!--Pie de pagina -->
+    <!--Pie de pagina -->
 <footer class="pie-pagina">
   <!--cinta-->
   <div class="cinta">
@@ -207,9 +193,12 @@
       <small>&copy; 2024 <b>MegaGames</b> - Todos Los derechos reservados.</small>
     </div>
   </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGz1q58rA6Jeld6J1uXZUc+4oB1rp+1aK8AB47DMR0BjI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-QF1ww7LWX4CzCUUZhEAbfNAn8ELTthE6C0vnR1qxVN51zjBfo4hF5wK37F2HcqTo" crossorigin="anonymous"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  <script type="module" src="./assets/js/perfil.js"></script>
   </body>
 </html>
