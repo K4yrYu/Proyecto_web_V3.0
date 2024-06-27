@@ -25,3 +25,7 @@ def contacto (request):
 def perfil (request):
     context ={}
     return render (request, 'megagames/perfil.html',context)
+
+def carrito (request):
+    context ={}
+    return render (request, 'megagames/carrito.html',context)
