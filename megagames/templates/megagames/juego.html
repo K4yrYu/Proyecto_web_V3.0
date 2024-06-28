@@ -101,15 +101,37 @@
       <!--catálogo de videojuegos-->
       <div class="container">
           <div class="row">
-              <!-- Input de búsqueda por nombre -->
-              <input type="text" class="form-control justify-content-center" id="nombre" placeholder="Buscar Juego...">
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5">
+            <form action="{% url 'juego' %}" method="GET">
+              <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                      <input type="text" class="form-control" id="nombre" name="q" placeholder="Buscar Juego...">
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                      <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
               </div>
-          </div>
-          <!-- Contenedor para las tarjetas de los juegos -->
-          <div id="contenedorJuego" class="row"></div>
+          </form>
+            
+          
+           <!--catálogo de videojuegos-->
+          
+                <!-- Contenedor para los resultados -->
+        <div id="contenedorJuego" class="row mt-4">
+          {% for videojuego in videojuegos %}
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5">
+                  <div class="card h-100">
+                      <img src="{{ videojuego.url_imagen }}" class="card-img-top" alt="{{ videojuego.nombre }}">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ videojuego.nombre }}</h5>
+                          <p class="card-text"><strong>Precio:</strong> ${{ videojuego.precio }}</p>
+                          <p class="card-text"><strong>Consolas:</strong> {{ videojuego.consolas }}</p>
+                          <p class="card-text"><strong>Stock:</strong> {{ videojuego.stock }}</p>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
       </div>
-
+  </div>
       
       <!--espacio-->
       <div class="container">
@@ -210,6 +232,6 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGz1q58rA6Jeld6J1uXZUc+4oB1rp+1aK8AB47DMR0BjI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-QF1ww7LWX4CzCUUZhEAbfNAn8ELTthE6C0vnR1qxVN51zjBfo4hF5wK37F2HcqTo" crossorigin="anonymous"></script>
-    <script src="{% static 'js/script-juego.js' %}"></script>
+     <script src="{% static 'js/script-juego.js' %}"></script>
   </body>
 </html>
