@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404 , redirect   
 
 from .models import Videojuego,Consola,Jugete
+
+from .forms import VideojuegoForm
 
 # Create your views here.
 def index (request):
@@ -65,3 +67,48 @@ def perfil (request):
 def carrito (request):
     context ={}
     return render (request, 'megagames/carrito.html',context)
+
+
+def juegoraw(request):
+    videojuegos = Videojuego.objects.raw('SELECT * FROM megagames_videojuego')
+    context = {"videojuegos": videojuegos}
+    return render(request, 'megagames/juegoraw.html', context)
+
+
+######## CRUD VIDEOJUEGO 
+
+
+
+### Listar juegos 
+def lista_videojuegos(request):
+    videojuegos = Videojuego.objects.all()
+    return render(request, 'megagames/lista_videojuegos.html', {'videojuegos': videojuegos})
+
+def videojuego_crear(request):
+    if request.method == 'POST':
+        form = VideojuegoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_videojuegos')
+    else:
+        form = VideojuegoForm()
+    return render(request, 'megagames/videojuego_crear.html', {'form': form})
+
+def editar_videojuego(request, nombre):
+    videojuego = get_object_or_404(Videojuego, nombre=nombre)
+    if request.method == 'POST':
+        form = VideojuegoForm(request.POST, request.FILES, instance=videojuego)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_videojuegos')
+    else:
+        form = VideojuegoForm(instance=videojuego)
+    return render(request, 'megagames/editar_videojuego.html', {'form': form, 'titulo': f'Editar {videojuego.nombre}'})
+
+def eliminar_videojuego(request, nombre):
+    videojuego = get_object_or_404(Videojuego, nombre=nombre)
+    if request.method == 'POST':
+        videojuego.delete()
+        return redirect('lista_videojuegos')
+    return render(request, 'megagames/eliminar_videojuego.html', {'videojuego': videojuego})
+
