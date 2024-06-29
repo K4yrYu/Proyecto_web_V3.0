@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Videojuego,Consola
+from .models import Videojuego,Consola,Jugete
 
 # Create your views here.
 def index (request):
@@ -19,12 +19,23 @@ def juego(request):
     return render(request, 'megagames/juego.html', context)
 
 def consolas(request):
-    consolas = Consola.objects.all()  # Fetch all instances of Consola
-    context = {"consolas": consolas}  # Pass instances to the context dictionary
+    query = request.GET.get('q', '')
+    if query:
+        consolas = Consola.objects.filter(nombre__icontains=query)
+    else:
+        consolas = Consola.objects.all()
+    
+    context = {"consolas": consolas}  
     return render(request, 'megagames/consolas.html', context)
 
 def jugetes (request):
-    context ={}
+    query = request.GET.get('q', '')
+    if query:
+        jugetes = Jugete.objects.filter(nombre__icontains=query)
+    else:    
+        jugetes = Jugete.objects.all()
+
+    context ={"jugetes":jugetes}
     return render (request, 'megagames/jugetes.html',context)
 
 def contacto (request):

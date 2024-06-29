@@ -19,7 +19,17 @@ class Consola(models.Model):
     nombre = models.CharField("Nombre", max_length=100)
     url_imagen = models.URLField("URL de la Imagen", max_length=200)
     stock = models.IntegerField("Stock")
-    precio = models.DecimalField("Precio", max_digits=8, decimal_places=2)
+    precio = models.IntegerField("Precio")
+    
+    def __str__(self):
+        return self.nombre
+    
+class Jugete(models.Model):
+    idjugete = models.AutoField(primary_key=True)
+    nombre = models.CharField("Nombre", max_length=100)
+    url_imagen = models.URLField("URL de la Imagen", max_length=200)
+    stock = models.IntegerField("Stock")
+    precio = models.IntegerField("Precio")
     
     def __str__(self):
         return self.nombre
