@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Videojuego,Consola,Jugete
 
@@ -18,6 +18,11 @@ def juego(request):
     context = {"videojuegos": videojuegos}
     return render(request, 'megagames/juego.html', context)
 
+def detalle_juego(request, nombre):
+    videojuego = get_object_or_404(Videojuego, nombre=nombre)  
+    context = {"videojuego": videojuego}  
+    return render(request, 'megagames/detalle_juego.html', context)
+
 def consolas(request):
     query = request.GET.get('q', '')
     if query:
@@ -28,6 +33,12 @@ def consolas(request):
     context = {"consolas": consolas}  
     return render(request, 'megagames/consolas.html', context)
 
+
+def detalle_consola(request, nombre):
+    consola = get_object_or_404(Consola, nombre=nombre)
+    context = {"consola": consola}
+    return render(request, 'megagames/detalle_consola.html', context)
+
 def jugetes (request):
     query = request.GET.get('q', '')
     if query:
@@ -37,6 +48,11 @@ def jugetes (request):
 
     context ={"jugetes":jugetes}
     return render (request, 'megagames/jugetes.html',context)
+
+def detalle_jugete(request, nombre):
+    jugete = get_object_or_404(Jugete, nombre=nombre)
+    context = {"jugete": jugete}
+    return render(request, 'megagames/detalle_jugete.html', context)
 
 def contacto (request):
     context ={}

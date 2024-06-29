@@ -103,6 +103,7 @@
                             <h5 class="card-title">{{ jugete.nombre }}</h5>
                             <p class="card-text"><strong>Precio:</strong> ${{ jugete.precio }}</p>
                             <p class="card-text"><strong>Stock:</strong> {{ jugete.stock }}</p>
+                            <a href="{% url 'detalle_jugete' jugete.nombre %}" class="btn btn-primary">Ver Detalles</a>
                         </div>
                     </div>
                 </div>

@@ -116,6 +116,7 @@
                             <h5 class="card-title">{{ consola.nombre }}</h5>
                             <p class="card-text"><strong>Precio:</strong> ${{ consola.precio }}</p>
                             <p class="card-text"><strong>Stock:</strong> {{ consola.stock }}</p>
+                            <a href="{% url 'detalle_consola' consola.nombre %}" class="btn btn-primary">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
