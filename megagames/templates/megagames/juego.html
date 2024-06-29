@@ -116,23 +116,29 @@
            <!--catálogo de videojuegos-->
           
                 <!-- Contenedor para los resultados -->
-        <div id="contenedorJuego" class="row mt-4">
-          {% for videojuego in videojuegos %}
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5">
-                  <div class="card h-100">
-                      <img src="{{ videojuego.url_imagen }}" class="card-img-top" alt="{{ videojuego.nombre }}">
-                      <div class="card-body">
-                          <h5 class="card-title">{{ videojuego.nombre }}</h5>
-                          <p class="card-text"><strong>Precio:</strong> ${{ videojuego.precio }}</p>
-                          <p class="card-text"><strong>Consolas:</strong> {{ videojuego.consolas }}</p>
-                          <p class="card-text"><strong>Stock:</strong> {{ videojuego.stock }}</p>
-                          <a href="{% url 'detalle_juego' videojuego.nombre %}" class="btn btn-primary">Ver Detalles</a>
+                <div id="contenedorJuego" class="row mt-4">
+                  {% for videojuego in videojuegos %}
+                      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-5">
+                          <div class="card h-100">
+                              {% if videojuego.imagen %}
+                                  <img src="{{ videojuego.imagen.url }}" class="card-img-top" alt="{{ videojuego.nombre }}">
+                              {% elif videojuego.url_imagen %}
+                                  <img src="{{ videojuego.url_imagen }}" class="card-img-top" alt="{{ videojuego.nombre }}">
+                              {% else %}
+                                  <!-- Si ninguna imagen está disponible, muestra una imagen por defecto -->
+                                  <img src="{% static 'images/default_image.jpg' %}" class="card-img-top" alt="Imagen por defecto">
+                              {% endif %}
+                              <div class="card-body">
+                                  <h5 class="card-title">{{ videojuego.nombre }}</h5>
+                                  <p class="card-text"><strong>Precio:</strong> ${{ videojuego.precio }}</p>
+                                  <p class="card-text"><strong>Consolas:</strong> {{ videojuego.consolas }}</p>
+                                  <p class="card-text"><strong>Stock:</strong> {{ videojuego.stock }}</p>
+                                  <a href="{% url 'detalle_juego' videojuego.nombre %}" class="btn btn-primary">Ver Detalles</a>
+                              </div>
+                          </div>
                       </div>
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
-  </div>
+                  {% endfor %}
+              </div>  
       
       <!--espacio-->
       <div class="container">
