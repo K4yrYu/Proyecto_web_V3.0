@@ -10,6 +10,11 @@ def index (request):
     return render (request, 'megagames/index.html',context)
 
 
+def edicion (request):
+    context ={}
+    return render (request, 'megagames/edicion.html',context)
+
+
 def juego(request):
     query = request.GET.get('q', '')
     if query:
