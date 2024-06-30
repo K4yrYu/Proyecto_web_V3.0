@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('megagames/', include('megagames.urls')),
+    
+    path('carro_Videojuegos/', include('carro_Videojuegos.urls')),
 ]
 
 if settings.DEBUG:

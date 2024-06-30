@@ -32,6 +32,8 @@ urlpatterns = [
     path('juguete_crear/', views.juguete_crear, name='juguete_crear'),
     path('editar_juguete/<str:nombre>/', views.editar_juguete, name='editar_juguete'),
     path('eliminar_juguete/<str:nombre>/', views.eliminar_juguete, name='eliminar_juguete'),
+    
+    
 ]
 
     

@@ -1,30 +1,28 @@
+
+
 #creacion estructura del carrito
-class CARRO_videojuegos:      
+class CARRO_videojuegos:
     def __init__(self, request):
         self.request = request
         self.session = request.session
-        CARRO_videojuegos = self.session.get("CARRO_videojuegos")
-        if not CARRO_videojuegos:
-            CARRO_videojuegos = self.session["CARRO_videojuegos"] = {}
-        else:
-            self.CARRO_videojuegos = CARRO_videojuegos
-        
-        
-    #funcion para agregar productos al carro
+        carro_videojuegos = self.session.get("CARRO_videojuegos")
+        if not carro_videojuegos:
+            carro_videojuegos = self.session["CARRO_videojuegos"] = {}
+        self.CARRO_videojuegos = carro_videojuegos
+
     def agregar_videojuegos(self, videojuego):
-        if (str(videojuego.id) not in self.CARRO_videojuegos.keys()):
-            self.CARRO_videojuegos[videojuego.id] = {
+        videojuego_id = str(videojuego.id)
+        if videojuego_id not in self.CARRO_videojuegos:
+            self.CARRO_videojuegos[videojuego_id] = {
                 "videojuego_id": videojuego.id,
                 "nombre": videojuego.nombre,
                 "precio": str(videojuego.precio),
                 "Stock": 1,
-                "imagen": videojuego.imagen.url
+                "imagen": videojuego.imagen.url,
             }
         else:
-            for key, value in self.CARRO_videojuegos.items():
-                if key == str(videojuego.id):
-                    value["Stock"] = value["Stock"] + 1
-                    break
+            self.CARRO_videojuegos[videojuego_id]["Stock"] += 1
+
         self.guardar_carro_videojuegos()
     
         
@@ -50,7 +48,7 @@ class CARRO_videojuegos:
                     if value["stock"]<1:
                         self.eliminar_videojuegos(videojuego)
                     break
-        self.guardar_carro_videojuegos()
+            self.guardar_carro_videojuegos()
         
     
     #limpiar el carro al cerrar la sesion 

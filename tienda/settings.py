@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'megagames',
     'carro_Videojuegos',
     'carro_Jugetes',    
-    'carro_Consolas', 
+    'carro_Consolas',
+    #'funcs_carro_J', 
     
 ]
 
@@ -56,6 +57,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carro_Videojuegos.context_processor.valor_final_carrito',
             ],
         },
     },
