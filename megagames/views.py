@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404 , redirect
 
 from .models import Videojuego,Consola,Jugete
 
-from .forms import VideojuegoForm
+from .forms import VideojuegoForm , ConsolaForm , JugeteForm
 
 # Create your views here.
 def index (request):
@@ -112,3 +112,73 @@ def eliminar_videojuego(request, nombre):
         return redirect('lista_videojuegos')
     return render(request, 'megagames/eliminar_videojuego.html', {'videojuego': videojuego})
 
+
+
+###### CRUD CONSOLAS 
+
+def lista_consolas(request):
+    consolas = Consola.objects.all()
+    return render(request, 'megagames/lista_consolas.html', {'consolas': consolas})
+
+def consola_crear(request):
+    if request.method == 'POST':
+        form = ConsolaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_consolas')
+    else:
+        form = ConsolaForm()
+    return render(request, 'megagames/consola_crear.html', {'form': form})
+
+def editar_consola(request, nombre):
+    consola = get_object_or_404(Consola, nombre=nombre)
+    if request.method == 'POST':
+        form = ConsolaForm(request.POST, request.FILES, instance=consola)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_consolas')
+    else:
+        form = ConsolaForm(instance=consola)
+    return render(request, 'megagames/editar_consola.html', {'form': form, 'titulo': f'Editar {consola.nombre}'})
+
+def eliminar_consola(request, nombre):
+    consola = get_object_or_404(Consola, nombre=nombre)
+    if request.method == 'POST':
+        consola.delete()
+        return redirect('lista_consolas')
+    return render(request, 'megagames/eliminar_consola.html', {'consola': consola})
+
+
+#######   CRUD JUGUETES 
+
+def lista_juguetes(request):
+    juguetes = Jugete.objects.all()
+    return render(request, 'megagames/lista_juguetes.html', {'juguetes': juguetes})
+
+def juguete_crear(request):
+    if request.method == 'POST':
+        form = JugeteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_juguetes')
+    else:
+        form = JugeteForm()
+    return render(request, 'megagames/juguete_crear.html', {'form': form})
+
+def editar_juguete(request, nombre):
+    juguete = get_object_or_404(Jugete, nombre=nombre)
+    if request.method == 'POST':
+        form = JugeteForm(request.POST, request.FILES, instance=juguete)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_juguetes')
+    else:
+        form = JugeteForm(instance=juguete)
+    return render(request, 'megagames/editar_juguete.html', {'form': form, 'titulo': f'Editar {juguete.nombre}'})
+
+def eliminar_juguete(request, nombre):
+    juguete = get_object_or_404(Jugete, nombre=nombre)
+    if request.method == 'POST':
+        juguete.delete()
+        return redirect('lista_juguetes')
+    return render(request, 'megagames/eliminar_juguete.html', {'juguete': juguete})
