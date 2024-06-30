@@ -27,7 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',  
     'megagames',
-    'carro',  
+    'carro_Videojuegos',
+    'carro_Jugetes',    
+    'carro_Consolas', 
+    
 ]
 
 MIDDLEWARE = [
