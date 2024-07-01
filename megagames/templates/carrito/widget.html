@@ -3,31 +3,35 @@
     <thead>     
         <tr>
             <th>Producto</th>
+            <th>Nombre</th>
             <th>Precio</th>
             <th>Cantidad</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody>
-        {% if request.session.carro_Videojuegos.items %}
-            {%for key, value in request.session.carro_Videojuegos.items%}
-                <td>{{value.nombre}}</td>
-                <td>{{value.precio}}</td>   
-                <td>{{value.stock}}</td>
+        {% if request.session.CARRO_videojuegos %}
+            {% for key, value in request.session.CARRO_videojuegos.items %}
+                <tr class="text-center">
+                    <td><img src="{{ value.imagen }}" alt="{{ value.nombre }}" style="width: 50px;"></td>
+                    <td>{{ value.nombre }}</td>
+                    <td>{{ value.precio }}</td>
+                    <td>{{ value.Stock }}</td>
+                    <td>
+                        <a href="{% url 'carro_Videojuegos:add_GAME' value.videojuego_id %}" class="btn btn-sm btn-secondary">+</a>
+                        <a href="{% url 'carro_Videojuegos:minus_GAME' value.videojuego_id %}" class="btn btn-sm btn-danger">-</a>
+                    </td>   
+                </tr>
             {% endfor %}
-
         {% else %}
             <tr>
-                <th colspan="3">
+                <th colspan="5">
                     <div class="alert alert-danger text-center">
                         No Hay Productos
                     </div>
-
                 </th>
-            
             </tr>
-
-
         {% endif %}
     </tbody>
 </table>
