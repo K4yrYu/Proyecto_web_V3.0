@@ -3,14 +3,13 @@
 #acumulador del preico final (repetir para consola y videojuegos)
 #al repetir sumar a la misma variable
 
-def valor_final_carrito(request):
-    precio_total = calcular_precio_total(request)
-    return {"valor_final_carrito": precio_total}
+# carro_Videojuegos/context_processor.py
 
-def calcular_precio_total(request):
+def valor_final_carrito(request):
     precio_total = 0
     if request.user.is_authenticated:
         if "CARRO_videojuegos" in request.session:
-            for key, value in request.session["CARRO_videojuegos"].items():
-                precio_total += float(value["precio"]) * value["Stock"]
-    return precio_total
+            carrito = request.session["CARRO_videojuegos"]
+            for key, value in carrito.items():
+                precio_total += int(value["precio"]) * int(value["Stock"])
+    return {'precio_total': precio_total}
