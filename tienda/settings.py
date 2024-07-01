@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'carro_Videojuegos',
     'carro_Jugetes',    
     'carro_Consolas',
-    #'funcs_carro_J', 
     
 ]
 

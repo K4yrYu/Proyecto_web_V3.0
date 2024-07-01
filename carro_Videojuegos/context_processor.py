@@ -4,9 +4,13 @@
 #al repetir sumar a la misma variable
 
 def valor_final_carrito(request):
-    precio_final = 0
+    precio_total = calcular_precio_total(request)
+    return {"valor_final_carrito": precio_total}
+
+def calcular_precio_total(request):
+    precio_total = 0
     if request.user.is_authenticated:
-        if "carro_Videojuegos" in request.session:
-            for key, value in request.session["carro_Videojuegos"].items():
-                precio_final += float(value["precio"]) * value["stock"]
-    return {"valor_final_carrito": precio_final}
+        if "CARRO_videojuegos" in request.session:
+            for key, value in request.session["CARRO_videojuegos"].items():
+                precio_total += float(value["precio"]) * value["Stock"]
+    return precio_total

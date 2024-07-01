@@ -19,8 +19,8 @@
                     <td>{{ value.precio }}</td>
                     <td>{{ value.Stock }}</td>
                     <td>
-                        <a href="{% url 'carro_Videojuegos:add_GAME' value.videojuego_id %}" class="btn btn-sm btn-secondary">+</a>
-                        <a href="{% url 'carro_Videojuegos:minus_GAME' value.videojuego_id %}" class="btn btn-sm btn-danger">-</a>
+                        <a href="{% url 'carro_Videojuegos:add_GAME2' value.videojuego_id %}" class="btn btn-sm btn-secondary">+</a>
+                        <a href="{% url 'carro_Videojuegos:minus_GAME2' value.videojuego_id %}" class="btn btn-sm btn-danger">-</a>
                     </td>   
                 </tr>
             {% endfor %}
@@ -35,3 +35,5 @@
         {% endif %}
     </tbody>
 </table>
+
+

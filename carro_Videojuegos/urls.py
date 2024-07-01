@@ -15,7 +15,9 @@ urlpatterns = [
     
     
     ##apartado exclusiv carro
-    
+    path('add_GAME2/<int:videojuego_id>/', views.agregar_videojuego2, name='add_GAME2'),
+    path('del_GAME2/<int:videojuego_id>/', views.eliminar_videojuego2, name='del_GAME2'),
+    path('minus_GAME2/<int:videojuego_id>/', views.restar_videojuego2, name='minus_GAME2'),
     
     
 ]

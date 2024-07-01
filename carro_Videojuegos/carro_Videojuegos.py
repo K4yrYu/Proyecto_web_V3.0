@@ -10,6 +10,7 @@ class CARRO_videojuegos:
             carro_videojuegos = self.session["CARRO_videojuegos"] = {}
         self.CARRO_videojuegos = carro_videojuegos
 
+
     def agregar_videojuegos(self, videojuego):
         videojuego_id = str(videojuego.id)
         if videojuego_id not in self.CARRO_videojuegos:
@@ -22,9 +23,10 @@ class CARRO_videojuegos:
             }
         else:
             self.CARRO_videojuegos[videojuego_id]["Stock"] += 1
-
+                
         self.guardar_carro_videojuegos()
-    
+        
+        
         
     # Función para restar productos del carro
     def restar_videojuegos(self, videojuego):
@@ -36,6 +38,8 @@ class CARRO_videojuegos:
                     self.eliminar_videojuegos(videojuego)
                 break
         self.guardar_carro_videojuegos()
+        
+        
     
     # Función para eliminar productos del carro
     def eliminar_videojuegos(self, videojuego):
@@ -43,6 +47,7 @@ class CARRO_videojuegos:
         if videojuego_id in self.CARRO_videojuegos:
             del self.CARRO_videojuegos[videojuego_id]
             self.guardar_carro_videojuegos()
+    
     
     # Función para limpiar el carro
     def limpiar_carro_videojuegos(self):
@@ -55,8 +60,10 @@ class CARRO_videojuegos:
         self.session.modified = True
         
         
+
+        
+        
 ############################################################
 
-#apartado exclusivo para sumar y restar desde el carrito
 
         

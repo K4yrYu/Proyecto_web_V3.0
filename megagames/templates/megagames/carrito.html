@@ -84,7 +84,14 @@
                   
 
                   <!--precio final de la compra-->
-                  <p class="font-size: 1.25rem">Total: ${{valor_final_carrito}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="color-letra-blanco">Total del Carrito: ${{ 0}}</h4>
+                    <div>
+                        <a href="#" class="btn btn-primary">Confirmar Compras</a>
+                    </div>
+                  </div>
+
+                  
                   <!--espacio-->
                   <div class="container">&nbsp;</div>
                   <!--btn volver al menu-->
@@ -206,6 +213,5 @@
     crossorigin="anonymous"
   ></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script type="module" src="./assets/js/script-carro.js"></script>
   </body>
 </html>
